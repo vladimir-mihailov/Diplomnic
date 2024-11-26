@@ -43,7 +43,7 @@ def exchange():
 
     if base_code and target_code:
         try:
-            response = requests.get(f'https://www.coingecko.com/en/converter{base_code}.json')
+            response = requests.get(f'https://api.coingecko.com/api/v3/simple/price?ids={crypto_name}&vs_currencies=usd{base_code}.json')
             response.raise_for_status()
 
             data = response.json()
@@ -70,10 +70,10 @@ def reset_selection():
 
 # Создание графического интерфейса
 window = Tk()
-window.title("Курс обмена валюты <<Меняла>>")
+window.title("Курс биткойна <<Меняла>>")
 window.geometry("400x360")
 
-Label(text="Базовая валюта:").pack(padx=10, pady=5)
+Label(text="Биткойн:").pack(padx=10, pady=5)
 base_combobox = ttk.Combobox(values=list(currencies.keys()), state="readonly")
 base_combobox.pack(padx=10, pady=5)
 base_combobox.bind("<<ComboboxSelected>>", update_b_label)
